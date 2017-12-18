@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTextEdit>
+#include <QProgressBar>
 
 
 /*namespace Ui {
@@ -20,8 +22,13 @@ public:
 private:
     void encrypt();
     void decrypt();
-    QAction *encryptAction;
-    QAction *decryptAction;
+   // QAction *encryptAction;
+   // QAction *decryptAction;
+    void open();
+    QAction *openAction;
+    QString path;
+    QTextEdit *pte;
+    QProgressBar *pgb;
     //Ui::MainWindow *ui;
 };
 

@@ -31,10 +31,9 @@ SOURCES += \
 
 HEADERS += \
         mainwindow.h \
-    encryption.h \
-    encryption.h \
     server.h\
-    winsock2.h
+    winsock2.h \
+    encryption.h
 
 FORMS += \
         mainwindow.ui

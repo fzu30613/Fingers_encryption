@@ -11,9 +11,11 @@ class EncryptionAlgorithm
            char *Scurecode;
            char *Message;
            int Changesize;
+           float progress;
     public:
 		   EncryptionAlgorithm();
            void setChangesize(int num);
+		   void setProgress(float num);
 		   void setMessage(char *msg);
            void setPassword(char *psw);
            void setSourcefile(char *path);
@@ -22,6 +24,7 @@ class EncryptionAlgorithm
            int getFilesize(char *path);
            void encryptFile();
            void decryptFile();
+           float getProgress();
 };
 
 #endif

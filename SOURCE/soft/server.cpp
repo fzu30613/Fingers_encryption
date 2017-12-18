@@ -130,6 +130,10 @@ bool TCPServer::req_one_one(const string &msg,string &recvmsg)
 		return false;}
 	if(!receiveData(recvmsg)){//cout<<"faile to recerver msg"<<endl;
 		return false;}
+	if(recvmsg.length()==0)
+	{
+		shutdownSocket();return false;
+	}
 	if(!shutdownSocket()) return false;
 	return true;
 }
@@ -143,6 +147,10 @@ bool TCPServer::req_one_two(const string &msg,string &recvmsg_one,string &recvms
 		return false;}
 	if(!receiveData(recvmsg_two)){//cout<<"faile to recerver msg"<<endl;
 		return false;}
+	if(recvmsg_one.length()==0||recvmsg_two.length()==0)
+	{
+		shutdownSocket();return false;
+	}
 	if(!shutdownSocket()) return false;
 	return true;
 }
