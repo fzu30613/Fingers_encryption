@@ -38,11 +38,14 @@ public class MainActivity extends AppCompatActivity {
     public void jiami_onClick(View view){
         Intent intent = new Intent(MainActivity.this,jiami.class);
         startActivity(intent);
-        finish();
+        overridePendingTransition( R.anim.abc_fade_in,R.anim.abc_fade_out);
+
+
     }
     public void jiemi_onClick(View view){
         Intent intent = new Intent(MainActivity.this,jiemi.class);
         startActivity(intent);
-        finish();
+        overridePendingTransition( R.anim.abc_fade_in,R.anim.abc_fade_out);
+
     }
 }

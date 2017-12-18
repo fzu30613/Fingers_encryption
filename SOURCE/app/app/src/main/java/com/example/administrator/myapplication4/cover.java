@@ -12,7 +12,7 @@ public class cover extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cover);
-        handler.postDelayed(runnable, 3000);
+        handler.postDelayed(runnable, 1000);
     }
 
     Handler handler = new Handler();

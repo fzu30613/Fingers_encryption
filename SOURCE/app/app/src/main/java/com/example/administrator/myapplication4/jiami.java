@@ -36,21 +36,29 @@ public class jiami extends AppCompatActivity {
     EditText IPEditText;//定义ip输入框
     EditText MsgEditText;//定义信息输出框
     Socket socket = null;//定义socket
+    Button jiamibutton;
+    Button jiamireturn;
     private OutputStream outputStream=null;//定义输出流
     private InputStream inputStream=null;//定义输入流
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jiami);
+        jiamibutton = (Button) findViewById(R.id.jiamibutton);
+        jiamireturn = (Button) findViewById(R.id.jiamireturn) ;
         IPEditText = (EditText) findViewById(R.id.edittext_jiami);
         manager = (FingerprintManager) this.getSystemService(Context.FINGERPRINT_SERVICE);
         mKeyManager = (KeyguardManager) this.getSystemService(Context.KEYGUARD_SERVICE);
-
+        jiamibutton.setBackground(getDrawable( R.drawable.send));
     }
     public void jiamizhiwenyanzheng_onclick(View view){
         Toast.makeText(jiami.this, "请进行指纹识别", Toast.LENGTH_LONG).show();
         Log(TAG, "keyi");
         startListening(null);
+    }
+    public void jiamireturn_onclick(View view){
+        finish();
     }
     public boolean isFinger() {
 
@@ -89,6 +97,8 @@ public class jiami extends AppCompatActivity {
         @Override
         public void onAuthenticationError(int errorCode, CharSequence errString) {
             //但多次指纹密码验证错误后，进入此方法；并且，不能短时间内调用指纹验证
+            Connect();
+            Connect();
             Toast.makeText(jiami.this, errString, Toast.LENGTH_SHORT).show();
             showAuthenticationScreen();
         }
@@ -101,24 +111,47 @@ public class jiami extends AppCompatActivity {
 
         @Override
         public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
-
+            jiamibutton.setEnabled(false);
+            jiamireturn.setEnabled(false);
             Toast.makeText(jiami.this, "指纹识别成功", Toast.LENGTH_SHORT).show();
-
+            jiamibutton.setBackground(getDrawable(R.drawable.sending));
                 Connect();
 
 
-            Send();
+                Send();
             handler.postDelayed(runnable, 3000);
 
         }
+        Handler handle = new Handler();
+
         Handler handler = new Handler();
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 Connect();
+
+                overridePendingTransition( R.anim.abc_grow_fade_in_from_bottom,R.anim.abc_slide_out_top);
+                jiamibutton.setBackground(getDrawable( R.drawable.sendover));
+                jiamireturn.setEnabled(true);
+                han.postDelayed(runn, 1000);
                 handler.removeCallbacks(runnable);
+
             }
         };
+        Handler han = new Handler();
+        Runnable runn = new Runnable() {
+            @Override
+            public void run() {
+
+
+
+                jiamibutton.setBackground(getDrawable( R.drawable.send));
+                jiamibutton.setEnabled(true);
+                han.removeCallbacks(runn);
+
+            }
+        };
+
         @Override
         public void onAuthenticationFailed() {
             Toast.makeText(jiami.this, "指纹识别失败", Toast.LENGTH_SHORT).show();
@@ -177,7 +210,7 @@ public class jiami extends AppCompatActivity {
             {
                 socket.close();//关闭连接
                 socket=null;
-                Toast.makeText(jiami.this,"连接断开",Toast.LENGTH_SHORT).show();
+                Toast.makeText(jiami.this,"传输完成",Toast.LENGTH_SHORT).show();
             }
             catch (IOException e)
             {
@@ -200,6 +233,7 @@ public class jiami extends AppCompatActivity {
             {
                 if(socket!=null){
                     //获取输出流
+                    Thread.sleep(1000);
                     outputStream = socket.getOutputStream();
                     //发送数据
                     outputStream.write("yes".getBytes());
@@ -211,7 +245,6 @@ public class jiami extends AppCompatActivity {
                     //outputStream.write("0".getBytes());
                     Toast.makeText(jiami.this,"已发送",Toast.LENGTH_SHORT).show();
 
-                    Thread.sleep(100);
                     issend=true;
                 }
                 else
@@ -299,5 +332,4 @@ public class jiami extends AppCompatActivity {
             }
         }
     }
-
 }

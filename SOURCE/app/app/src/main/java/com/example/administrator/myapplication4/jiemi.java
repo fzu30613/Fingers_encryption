@@ -36,6 +36,8 @@ public class jiemi extends AppCompatActivity {
     EditText IPEditText;//定义ip输入框
     EditText MsgEditText;//定义信息输出框
     Socket socket = null;//定义socket
+    Button jiemibutton;
+    Button jiemireturn;
     private OutputStream outputStream=null;//定义输出流
     private InputStream inputStream=null;//定义输入流
     int a=0;
@@ -44,6 +46,8 @@ public class jiemi extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jiemi);
         IPEditText = (EditText) findViewById(R.id.edittext_jiemi);
+        jiemibutton = (Button) findViewById(R.id.jiemibutton);
+        jiemireturn = (Button) findViewById(R.id.jiemireturn);
         manager = (FingerprintManager) this.getSystemService(Context.FINGERPRINT_SERVICE);
         mKeyManager = (KeyguardManager) this.getSystemService(Context.KEYGUARD_SERVICE);
     }
@@ -52,6 +56,9 @@ public class jiemi extends AppCompatActivity {
         Log(TAG, "keyi");
         startListening(null);
     }
+public void jiemireturn_onclick(View view){
+        finish();
+}
     public boolean isFinger() {
 
         //android studio 上，没有这个会报错
@@ -101,22 +108,46 @@ public class jiemi extends AppCompatActivity {
 
         @Override
         public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
-
+            jiemibutton.setEnabled(false);
+            jiemireturn.setEnabled(false);
+            jiemibutton.setBackground(getDrawable(R.drawable.sending));
             Toast.makeText(jiemi.this, "指纹识别成功", Toast.LENGTH_SHORT).show();
+            handle.postDelayed(runnabl, 1000);
 
-            Connect();
 
 
-            Send();
-            handler.postDelayed(runnable, 1000);
+            handler.postDelayed(runnable, 2100);
+
 
         }
+        Handler handle = new Handler();
+        Runnable runnabl = new Runnable() {
+            @Override
+            public void run() {
+                Connect();
+                Send();
+                handle.removeCallbacks(runnabl);
+            }
+        };
         Handler handler = new Handler();
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 Connect();
+                Toast.makeText(jiemi.this, "传输完成", Toast.LENGTH_SHORT).show();
+                handl.postDelayed(runnab, 2000);
+                jiemireturn.setEnabled(true);
+                jiemibutton.setBackground(getDrawable(R.drawable.sendover));
                 handler.removeCallbacks(runnable);
+            }
+        };
+        Handler handl = new Handler();
+        Runnable runnab = new Runnable() {
+            @Override
+            public void run() {
+                jiemibutton.setEnabled(true);
+                jiemibutton.setBackground(getDrawable(R.drawable.send));
+                handl.removeCallbacks(runnab);
             }
         };
         @Override
@@ -126,6 +157,7 @@ public class jiemi extends AppCompatActivity {
             if(a==5){
                 Connect();
                 Send1();
+                Toast.makeText(jiemi.this, "认证失败，请稍后再试", Toast.LENGTH_SHORT).show();
                 handler.postDelayed(runnable, 1000);
             }
         }
@@ -183,7 +215,7 @@ public class jiemi extends AppCompatActivity {
             {
                 socket.close();//关闭连接
                 socket=null;
-                Toast.makeText(jiemi.this,"连接断开",Toast.LENGTH_SHORT).show();
+                Toast.makeText(jiemi.this,"传输完成",Toast.LENGTH_SHORT).show();
             }
             catch (IOException e)
             {
@@ -210,7 +242,7 @@ public class jiemi extends AppCompatActivity {
                     outputStream.write("no".getBytes());
                     //outputStream.write("0".getBytes());
                     Toast.makeText(jiemi.this,"已发送",Toast.LENGTH_SHORT).show();
-                    Thread.sleep(100);
+                    Thread.sleep(1000);
                     issend=true;
                 }
                 else
@@ -245,7 +277,7 @@ public class jiemi extends AppCompatActivity {
                     //outputStream.write("0".getBytes());
                     Toast.makeText(jiemi.this,"已发送",Toast.LENGTH_SHORT).show();
 
-                    Thread.sleep(100);
+                    Thread.sleep(1000);
 
                     issend=true;
                 }
