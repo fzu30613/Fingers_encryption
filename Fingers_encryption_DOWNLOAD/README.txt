@@ -1,4 +1,9 @@
-Fingers_encryption_Alpha
+﻿Fingers_encryption_Alpha
+压缩包为电脑端的软件
+apk为手机端的app
+使用时请在同一局域网下配合使用
+
+Fingers_encryption_Beta
 压缩包为电脑端的软件
 apk为手机端的app
 使用时请在同一局域网下配合使用
