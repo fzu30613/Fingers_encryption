@@ -9,5 +9,15 @@
         <file>G:/课件/软工实践/文件加密/icon/1121302.png</file>
         <file>imgs/file.png</file>
         <file>G:/课件/软工实践/文件加密/icon/46a58PICXBE_1024.jpg</file>
+        <file>imgs/checkmark_1.png</file>
+        <file>imgs/checkmark_2.png</file>
+        <file>imgs/cross_1.png</file>
+        <file>imgs/cross_2.png</file>
+        <file>imgs/reload_1.png</file>
+        <file>imgs/reload_2.png</file>
+        <file>imgs/connect.png</file>
+        <file>imgs/disconnect.png</file>
+        <file>imgs/secure.png</file>
+        <file>imgs/secure_1.png</file>
     </qresource>
 </RCC>

@@ -27,13 +27,15 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     encryption.cpp \
-    server.cpp
+    netmanager.cpp \
+    cdialog.cpp
 
 HEADERS += \
         mainwindow.h \
-    server.h\
     winsock2.h \
-    encryption.h
+    encryption.h \
+    netmanager.h \
+    cdialog.h
 
 FORMS += \
         mainwindow.ui
