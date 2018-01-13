@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.administrator.myapplication4">
-
+    package="com.example.hasee.net_test">
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="指尖加密"
+        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/a">
-        <activity android:name=".MainActivity" />
+        android:theme="@style/AppTheme">
         <activity
             android:name=".cover"
             android:theme="@style/AppTheme">
@@ -25,16 +24,18 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".MainActivity"
+            android:theme="@style/a"/>
+
+        <activity
             android:name=".First_in"
             android:theme="@style/a" />
         <activity android:name=".rescue"
             android:theme="@style/a"/>
-        <activity android:name=".TCP_client"
-            android:theme="@style/a"/>
-        <activity android:name=".jiami"
-            android:theme="@style/a"/>
-        <activity android:name=".jiemi"
-            android:theme="@style/a"/>
+        <service
+            android:name=".NetManager"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

@@ -1,24 +1,16 @@
-package com.example.administrator.myapplication4;
+package com.example.hasee.net_test;
+
 import android.content.Intent;
-import android.provider.Settings;
-import android.content.Context;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.provider.Settings;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.LineNumberReader;
-import java.net.InetAddress;
 import java.net.NetworkInterface;
-import java.net.SocketException;
 import java.util.Collections;
-import java.util.Enumeration;
 import java.util.List;
 
 public class rescue extends AppCompatActivity {
@@ -37,7 +29,7 @@ public class rescue extends AppCompatActivity {
             }
         });
         TextView textview = (TextView) findViewById(R.id.textview_rescue);
-        textview.setText(Settings.System.getString(getContentResolver(), Settings.System.ANDROID_ID)+" "+android.os.Build.MODEL+" "+android.os.Build.BRAND+" "+getTime());
+        textview.setText(Integer.toHexString(Integer.valueOf( Settings.System.getString(getContentResolver(), Settings.System.ANDROID_ID).substring(8,16),16)));
         handler.postDelayed(runnable, 1000);
     }
     Handler handler = new Handler();

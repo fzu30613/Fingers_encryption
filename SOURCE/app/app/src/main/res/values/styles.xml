@@ -8,7 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowNoTitle">true</item>
     </style>
+
     <style name="a" parent="Theme.AppCompat.Light.DarkActionBar"></style>
-
-
 </resources>

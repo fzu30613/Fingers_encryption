@@ -1,4 +1,4 @@
-package com.example.administrator.myapplication4;
+package com.example.hasee.net_test;
 
 import org.junit.Test;
 

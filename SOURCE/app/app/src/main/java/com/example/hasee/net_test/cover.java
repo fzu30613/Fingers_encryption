@@ -1,10 +1,10 @@
-package com.example.administrator.myapplication4;
+package com.example.hasee.net_test;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 public class cover extends AppCompatActivity {
 
